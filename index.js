@@ -12,7 +12,7 @@ const reviews = [
 
   {
     img: "./images/person2.jpg",
-    fullNmae: "Anna Johnson",
+    fullName: "Anna Johnson",
     firstName: "Anna",
     lastName: "Johnson",
     job: "UX Designer",
@@ -23,7 +23,7 @@ const reviews = [
 
   {
     img: "./images/person3.jpg",
-    fullNmae: "Peter Jones",
+    fullName: "Peter Jones",
     firstName: "Peter",
     lastName: "Jones",
     job: "Inter",
@@ -34,7 +34,7 @@ const reviews = [
 
   {
     img: "./images/person4.jpg",
-    fullNmae: "Bill Anderson",
+    fullName: "Bill Anderson",
     firstName: "Bill",
     lastName: "Anderson",
     job: " The Boss",
@@ -55,6 +55,11 @@ const randomBtn = document.querySelector(".random-btn");
 
 let currentItem = 0;
 
+function randomButtons() {
+  currentItem = Math.floor(Math.random() * reviews.length);
+  showPerson(currentItem);
+}
+
 window.addEventListener("DOMContentLoaded", function () {
   const item = reviews[currentItem];
   img.src = item.img;
@@ -62,3 +67,13 @@ window.addEventListener("DOMContentLoaded", function () {
   job.textContent = item.job;
   info.textContent = item.info;
 });
+
+function showPerson(person) {
+  const item = reviews[person];
+  img.src = item.img;
+  author.textContent = item.fullName;
+  job.textContent = item.job;
+  info.textContent = item.info;
+}
+
+randomBtn.addEventListener("click", randomButtons);
