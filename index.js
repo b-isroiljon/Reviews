@@ -48,48 +48,41 @@ const img = document.getElementById("person-img");
 const author = document.getElementById("author");
 const job = document.getElementById("job");
 const info = document.getElementById("info");
-
+const navigationButtons = document.querySelector(".btn-container");
 const prevBtn = document.querySelector(".prev-btn");
 const nextBtn = document.querySelector(".next-btn");
 const randomBtn = document.querySelector(".random-btn");
+let currentIndex = 0;
 
-let currentItem = 0;
+// when document is loaded update person data
+window.addEventListener("DOMContentLoaded", function () {
+  updatePerson(currentIndex);
+});
+
+//updates person data to specified object with given index
+function updatePerson(index) {
+  const item = reviews[index];
+  img.src = item.img;
+  author.textContent = item.fullName;
+  job.textContent = item.job;
+  info.textContent = item.info;
+}
 
 function randomButtons() {
-  currentItem = Math.floor(Math.random() * reviews.length);
-  showPerson(currentItem);
+  currentIndex = Math.floor(Math.random() * reviews.length);
+  updatePerson(currentIndex);
 }
 
-window.addEventListener("DOMContentLoaded", function () {
-  const item = reviews[currentItem];
-  img.src = item.img;
-  author.textContent = item.fullName;
-  job.textContent = item.job;
-  info.textContent = item.info;
-});
+function move(event) {
+  const event = event.target.dataset.direction;
 
-function showPerson(person) {
-  const item = reviews[person];
-  img.src = item.img;
-  author.textContent = item.fullName;
-  job.textContent = item.job;
-  info.textContent = item.info;
+  if (event === "nextBtn") currentIndex++;
+  if (currentIndex > reviews.length - 1) currentIndex = 0;
+  else if (event === "prev") currentIndex--;
+  if (currentIndex < 0) currentIndex = reviews.length - 1;
+
+  updatePerson(currentIndex);
 }
 
-nextBtn.addEventListener("click", function () {
-  currentItem++;
-  if (currentItem > reviews.length - 1) {
-    currentItem = 0;
-  }
-  showPerson(currentItem);
-});
-
-prevBtn.addEventListener("click", function () {
-  currentItem--;
-  if (currentItem < 0) {
-    currentItem = reviews.length - 1;
-  }
-  showPerson(currentItem);
-});
-
+navigationButtons.addEventListener("click", move);
 randomBtn.addEventListener("click", randomButtons);
