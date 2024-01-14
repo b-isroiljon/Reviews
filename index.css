@@ -132,6 +132,7 @@ img:not(.nav-logo) {
     background: transparent;
     border-color: transparent;
     margin: 0 0.5rem;
+    font-size: 25px;
     transition: all 0.3s linear;
     cursor: pointer;
   }

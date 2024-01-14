@@ -26,7 +26,7 @@ const reviews = [
     fullName: "Peter Jones",
     firstName: "Peter",
     lastName: "Jones",
-    job: "Inter",
+    job: "Intern",
     info: `Sriracha literally flexitarian irony, vape marfa unicorn. Glossier tattooed 8-bit,
      fixie waistcoat offal activated charcoal slow-carb marfa hell of pabst
       raclette post-ironic jianbing swag.`,
@@ -49,8 +49,8 @@ const author = document.getElementById("author");
 const job = document.getElementById("job");
 const info = document.getElementById("info");
 const navigationButtons = document.querySelector(".btn-container");
-const prevBtn = document.querySelector(".prev-btn");
 const nextBtn = document.querySelector(".next-btn");
+const prevBtn = document.querySelector(".prev-btn");
 const randomBtn = document.querySelector(".random-btn");
 let currentIndex = 0;
 
@@ -72,17 +72,18 @@ function randomButtons() {
   currentIndex = Math.floor(Math.random() * reviews.length);
   updatePerson(currentIndex);
 }
-
-function move(event) {
-  const event = event.target.dataset.direction;
-
+function navButtons(event) {
   if (event === "nextBtn") currentIndex++;
   if (currentIndex > reviews.length - 1) currentIndex = 0;
-  else if (event === "prev") currentIndex--;
+  else if (event === "prevBtn") currentIndex--;
   if (currentIndex < 0) currentIndex = reviews.length - 1;
 
   updatePerson(currentIndex);
 }
 
-navigationButtons.addEventListener("click", move);
+navigationButtons.addEventListener("click", function (event) {
+  if (event.target.classList.contains("next-btn")) navButtons("nextBtn");
+  else if (event.target.classList.contains("prev-btn")) navButtons("prevBtn");
+});
+
 randomBtn.addEventListener("click", randomButtons);
