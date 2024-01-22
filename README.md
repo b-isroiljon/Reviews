@@ -1,12 +1,14 @@
+# Menu
+
 ## Usage
 
-1. Use the "Next", "Previous" and "Random" buttons to switch between different people.
+1. Use the "All", "Breakfast", "lunnch" buttons to switch between different menu catygory.
 
 ## Components
 
 ### HTML
 
-The `index.html` file contains HTML markup to display information about people.
+The `index.html` file contains HTML markup to display information about food catygory.
 
 ### CSS
 
@@ -14,6 +16,9 @@ The `style.css` file contains styles for HTML markup.
 
 ### JavaScript
 
-The `script.js` file contains the JavaScript code to switch between different people.
+The `app.js` file contains the JavaScript .
 
-to view click [here](https://b-isroiljon.github.io/Reviews/)
+to watch click [here](https://b-isroiljon.github.io/menu/)
+
+
+
